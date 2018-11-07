@@ -29,7 +29,11 @@ def ThresholdList(request):
     print("role= ", role)
     return render(request, 'Threshold/thresholds.html', context)
 
-
+'''
+Taller
+Sebastian Garcia
+Joseph Ortiz
+'''
 
 @login_required
 def AverageList(request):
