@@ -4,6 +4,8 @@ from .forms import ThresholdForm
 from django.contrib.auth.decorators import login_required
 import json, requests
 
+from django.db.models import Avg
+
 
 def index(request):
     return render(request, 'index.html')
@@ -26,6 +28,22 @@ def ThresholdList(request):
     }
     print("role= ", role)
     return render(request, 'Threshold/thresholds.html', context)
+
+
+
+@login_required
+def AverageList(request):
+    promedio = Measurement.objects.all().aggregate(promedio=Avg('value'))
+    role = getRole(request)
+    context = {
+        'promedio': promedio,
+        'role': role
+    }
+    print("role= ", role)
+    return render(request, 'Average/averages.html', context)
+
+
+
 
 @login_required
 def ThresholdEdit(request, id_threshold):
