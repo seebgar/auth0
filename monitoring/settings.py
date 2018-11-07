@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'name_db',
-        'USER': 'user_db',
-        'PASSWORD': 'pass',
-        'HOST': 'ip_instance',
+        'NAME': 'monitoring_db2',
+        'USER': 'monitoring_user2',
+        'PASSWORD': 'ISIS2503',
+        'HOST': '54.69.79.37',
         'PORT': '5432',
     }
 }
@@ -134,3 +134,27 @@ MEDIA_URL = '/static/media/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+
+LOGOUT_REDIRECT_URL = "https://isis2503-seebgar.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.222.57.192:8000"
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
+
+SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-seebgar.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'YeDAJXK3k4B7qbh2v3K99TCUWIuD3Cqw'
+SOCIAL_AUTH_AUTH0_SECRET = 'GljAVw9W1xVnstgVySd5ULBlXz-gOqUf8k1ztINjnDLg8kbSqnrwHtARTqVJYGMe'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+'openid',
+'profile'
+]
+
+AUTHENTICATION_BACKENDS = {
+'measurements.auth0backend.Auth0',
+'django.contrib.auth.backends.ModelBackend',
+}
+
+
+
